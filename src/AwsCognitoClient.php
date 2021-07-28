@@ -98,6 +98,13 @@ class AwsCognitoClient
      * @var string
      */
     const EXPIRED_CODE = 'ExpiredCodeException';
+    
+     /**
+     * Constant representing the SMS MFA challenge.
+     *
+     * @var string
+     */
+    const SMS_MFA = 'SMS_MFA';
 
 
     /**
@@ -597,27 +604,6 @@ class AwsCognitoClient
         }
 
         return $user;
-    } //Function ends
-
-
-    /**
-     * Get user details by access token.
-     * https://docs.aws.amazon.com/aws-sdk-php/v3/api/api-cognito-idp-2016-04-18.html#getuser
-     *
-     * @param string $token
-     * @return mixed
-     */
-    public function getUserByAccessToken(string $token)
-    {
-        try {
-            $result = $this->client->getUser([
-                'AccessToken' => $token
-            ]);
-        } catch (CognitoIdentityProviderException $e) {
-            throw $e;
-        } //Try-catch ends
-
-        return $result;
     } //Function ends
 
 
